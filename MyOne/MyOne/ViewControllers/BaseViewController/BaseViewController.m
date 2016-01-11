@@ -86,12 +86,6 @@
     return image;
 }
 
-#pragma mark - Touch Events
-
-- (void)share {
-    
-}
-
 #pragma mark - MBProgressHUD
 
 - (void)showHUDWaitingWhileExecuting:(SEL)method {

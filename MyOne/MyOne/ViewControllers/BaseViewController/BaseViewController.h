@@ -22,7 +22,7 @@
 /**
  *  点击分享按钮时调用
  */
-- (void)share;
+- (void)shareToSocial;
 
 /**
  *  不显示返回按钮的Title

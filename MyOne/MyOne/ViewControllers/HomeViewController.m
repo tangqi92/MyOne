@@ -224,7 +224,7 @@
 #pragma mark - Parent
 
 - (void)share {
-	[super share];
+	[super shareToSocial];
 }
 
 /*
