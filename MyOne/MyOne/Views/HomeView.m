@@ -7,9 +7,9 @@
 //
 
 #import "HomeView.h"
-#import <Masonry/Masonry.h>
 #import "HomeEntity.h"
 #import "CustomImageView.h"
+#import <Masonry/Masonry.h>
 
 #define PaintInfoTextColor [UIColor colorWithRed:85 / 255.0 green:85 / 255.0 blue:85 / 255.0 alpha:1] // #555555
 #define DayTextColor [UIColor colorWithRed:55 / 255.0 green:194 / 255.0 blue:241 / 255.0 alpha:1] // #37C2F1
@@ -28,7 +28,7 @@
 @property (nonatomic, strong) UIImageView *contentBGImageView;
 @property (nonatomic, strong) UITextView *contentTextView;
 @property (nonatomic, strong) UIButton *praiseNumberBtn;
-@property (strong, nonatomic) UIActivityIndicatorView *indicatorView;// item 加载中转转的菊花
+@property (nonatomic, strong) UIActivityIndicatorView *indicatorView;// item 加载中旋转的菊花：）污
 
 @end
 

@@ -74,7 +74,8 @@
 	[self setUpViews];
 }
 
-#pragma mark 初始化视图控件
+#pragma mark - 初始化视图控件
+
 - (void)setUpViews {
 	self.carousel = [[iCarousel alloc] initWithFrame:self.bounds];
 	self.carousel.delegate = self;

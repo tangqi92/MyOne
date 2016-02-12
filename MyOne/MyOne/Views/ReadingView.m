@@ -15,7 +15,7 @@
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) UILabel *dateLabel;
 @property (nonatomic, strong) ReadingAuthorView *readingAuthorView;
-@property (strong, nonatomic) UIActivityIndicatorView *indicatorView;// item 加载中转转的菊花
+@property (strong, nonatomic) UIActivityIndicatorView *indicatorView;// item 加载中旋转的菊花：）污
 
 @end
 

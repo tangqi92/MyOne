@@ -65,6 +65,7 @@
 	
 	[self requestHomeContentAtIndex:0];
 	
+    // 注册通知，用于接收主题改变的消息，收到消息后，改变页面中所有元素的配色（递归方式）
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nightModeSwitch:) name:@"DKNightVersionNightFallingNotification" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nightModeSwitch:) name:@"DKNightVersionDawnComingNotification" object:nil];
 	

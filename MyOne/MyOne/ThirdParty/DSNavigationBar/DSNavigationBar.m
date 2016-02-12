@@ -53,6 +53,7 @@ static CGFloat kEndPoint = 1.5;
     return self;
 }
 */
+
 void drawLinearGradient(CGContextRef context, CGRect rect, CGColorRef startColor, CGColorRef endColor)
 {
      CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -146,6 +147,5 @@ void drawLinearGradient(CGContextRef context, CGRect rect, CGColorRef startColor
 	[self setTintColor:[UIColor whiteColor]];
 	[self setTranslucent:NO];
 }
-
 
 @end

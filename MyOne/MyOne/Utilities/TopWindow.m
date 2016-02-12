@@ -48,6 +48,7 @@ static UIWindow *window;
 		[self searchScrollViewInView:subview];
 	}
 }
+
 + (BOOL)isShowingOnKeyWindow:(UIView *)view {
 	// 主窗口
 	UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;

@@ -10,6 +10,9 @@
 
 IB_DESIGNABLE
 
+/**
+ *  UINavigationBar that allows to set a transparency colors.
+ */
 @interface DSNavigationBar : UINavigationBar
 
 @property (strong, nonatomic) IBInspectable UIColor *color;
