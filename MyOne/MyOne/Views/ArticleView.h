@@ -1,5 +1,5 @@
 //
-//  ReadingView.h
+//  ArticleView.h
 //  MyOne
 //
 //  Created by HelloWorld on 8/2/15.
@@ -12,7 +12,6 @@
 @interface ArticleView : UIView
 
 - (void)configureArticleViewWithArticleEntity:(ArticleEntity *)ArticleEntity;
-
 - (void)refreshSubviewsForNewItem;
 
 @end

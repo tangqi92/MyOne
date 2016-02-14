@@ -54,7 +54,7 @@ typedef void(^FailBlock) (AFHTTPRequestOperation *operation, NSError *error);
  *  @param success        请求成功 Block
  *  @param fail           请求失败 Block
  */
-+ (void)requestReadingContentByDate:(NSString *)date lastUpdateDate:(NSString *)lastUpdateDate success:(SuccessBlock)success failBlock:(FailBlock)fail;
++ (void)requestArticleContentByDate:(NSString *)date lastUpdateDate:(NSString *)lastUpdateDate success:(SuccessBlock)success failBlock:(FailBlock)fail;
 
 /**
  *   获取问题

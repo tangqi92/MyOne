@@ -1,5 +1,5 @@
 //
-//  ReadingViewController.m
+//  ArticleViewController.m
 //  MyOne
 //
 //  Created by HelloWorld on 7/27/15.
@@ -36,8 +36,8 @@
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	
 	if (self) {
-		UIImage *deselectedImage = [[UIImage imageNamed:@"tabbar_item_reading"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-		UIImage *selectedImage = [[UIImage imageNamed:@"tabbar_item_reading_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+		UIImage *deselectedImage = [[UIImage imageNamed:@"tabbar_item_article"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+		UIImage *selectedImage = [[UIImage imageNamed:@"tabbar_item_article_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 		// 底部导航item
 		UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"文章" image:nil tag:0];
 		tabBarItem.image = deselectedImage;
@@ -67,7 +67,7 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nightModeSwitch:) name:@"DKNightVersionNightFallingNotification" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nightModeSwitch:) name:@"DKNightVersionDawnComingNotification" object:nil];
 	
-	[self requestReadingContentAtIndex:0];
+	[self requestArticleContentAtIndex:0];
 }
 
 #pragma mark - Lifecycle
@@ -137,7 +137,7 @@
 		ArticleView *articleView = (ArticleView *)[rightPullToRefreshView itemViewAtIndex:index].subviews[0];
 		[articleView configureArticleViewWithArticleEntity:readItems[[@(index) stringValue]]];
 	} else {
-		[self requestReadingContentAtIndex:index];
+		[self requestArticleContentAtIndex:index];
 	}
 }
 
@@ -166,13 +166,13 @@
 	if (readItems.allKeys.count > 0) {// 避免第一个还未加载的时候右拉刷新更新数据
 		[self showHUDWithText:@""];
 		isRefreshing = YES;
-		[self requestReadingContentAtIndex:0];
+		[self requestArticleContentAtIndex:0];
 	}
 }
 
-- (void)requestReadingContentAtIndex:(NSInteger)index {
+- (void)requestArticleContentAtIndex:(NSInteger)index {
 	NSString *date = [BaseFunction stringDateBeforeTodaySeveralDays:index];
-	[HTTPTool requestReadingContentByDate:date lastUpdateDate:lastUpdateDate success:^(AFHTTPRequestOperation *operation, id responseObject) {
+	[HTTPTool requestArticleContentByDate:date lastUpdateDate:lastUpdateDate success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		if ([responseObject[@"result"] isEqualToString:REQUEST_SUCCESS]) {
 			ArticleEntity *returnArticleEntity = [ArticleEntity objectWithKeyValues:responseObject[@"contentEntity"]];
 			if (isRefreshing) {
@@ -185,14 +185,14 @@
 					[self hideHud];
 				}
 				
-				[self endRequestReadingContent:returnArticleEntity atIndex:index];
+				[self endRequestArticleContent:returnArticleEntity atIndex:index];
 			} else {
 				[self hideHud];
-				[self endRequestReadingContent:returnArticleEntity atIndex:index];
+				[self endRequestArticleContent:returnArticleEntity atIndex:index];
 			}
 		}
 	} failBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-		NSLog(@"reading error = %@", error);
+		NSLog(@"article error = %@", error);
 	}];
 }
 
@@ -203,7 +203,7 @@
 	[self.rightPullToRefreshView endRefreshing];
 }
 
-- (void)endRequestReadingContent:(ArticleEntity *)ArticleEntity atIndex:(NSInteger)index {
+- (void)endRequestArticleContent:(ArticleEntity *)ArticleEntity atIndex:(NSInteger)index {
 	[readItems setObject:ArticleEntity forKey:[@(index) stringValue]];
 	[self.rightPullToRefreshView reloadItemAtIndex:index animated:NO];
 }

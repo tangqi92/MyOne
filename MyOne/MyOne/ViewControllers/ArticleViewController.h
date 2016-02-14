@@ -1,5 +1,5 @@
 //
-//  ReadingViewController.h
+//  ArticleViewController.h
 //  MyOne
 //
 //  Created by HelloWorld on 7/27/15.

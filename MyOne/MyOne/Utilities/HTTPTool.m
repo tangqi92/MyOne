@@ -79,7 +79,7 @@
  *  @param success        请求成功 Block
  *  @param fail           请求失败 Block
  */
-+ (void)requestReadingContentByDate:(NSString *)date lastUpdateDate:(NSString *)lastUpdateDate success:(SuccessBlock)success failBlock:(FailBlock)fail {
++ (void)requestArticleContentByDate:(NSString *)date lastUpdateDate:(NSString *)lastUpdateDate success:(SuccessBlock)success failBlock:(FailBlock)fail {
 	AFHTTPRequestOperationManager *manager = [HTTPTool initAFHttpManager];
 	NSDictionary *parameters = @{@"strDate" : date, @"strLastUpdateDate" : lastUpdateDate};
 	[manager GET:URL_GET_READING_CONTENT parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
