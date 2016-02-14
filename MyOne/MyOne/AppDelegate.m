@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "HomeViewController.h"
-#import "ReadingViewController.h"
+#import "ArticleViewController.h"
 #import "QuestionViewController.h"
 #import "ThingViewController.h"
 #import "PersonViewController.h"
@@ -102,7 +102,7 @@
 	UINavigationController *homeNavigationController = [self dsNavigationController];
 	[homeNavigationController setViewControllers:@[homeViewController]];
 	// 文章
-	ReadingViewController *readingViewController = [[ReadingViewController alloc] init];
+	ArticleViewController *readingViewController = [[ArticleViewController alloc] init];
 	UINavigationController *readingNavigationController = [self dsNavigationController];
 	[readingNavigationController setViewControllers:@[readingViewController]];
 	// 问题

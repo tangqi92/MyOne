@@ -7,14 +7,14 @@
 //
 
 #import "QuestionView.h"
-#import "PraiseView.h"
+#import "LikesView.h"
 #import "QuestionEntity.h"
 
 @interface QuestionView () <UIWebViewDelegate>
 
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) UILabel *dateLabel;
-@property (nonatomic, strong) PraiseView *praiseView;
+@property (nonatomic, strong) LikesView *likesView;
 @property (strong, nonatomic) UIActivityIndicatorView *indicatorView;// item 加载中旋转的菊花：）污
 
 @end
@@ -146,29 +146,29 @@
 		}
 	}
 	
-	PraiseView *praiseView = nil;
+	LikesView *likesView = nil;
 	
 	if (webView.scrollView.subviews.count < 4) {// 小于4说明还没有添加文章底部的作者详情 view
 		// webView 底部添加一个作者的描述视图
-		praiseView = [[PraiseView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 68)];
-		praiseView.tag = BottomViewTag;
+		likesView = [[LikesView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 68)];
+		likesView.tag = BottomViewTag;
 	} else {
-		praiseView = (PraiseView *)[webView.scrollView viewWithTag:BottomViewTag];
+		likesView = (LikesView *)[webView.scrollView viewWithTag:BottomViewTag];
 	}
 	
 	// 如果当前的问题内容没有获取过来，就不添加点赞的视图
 	if (IsStringNotEmpty(currentQuestion.strQuestionId)) {
-		[praiseView configureViewWithPraiseNumber:currentQuestion.strPraiseNumber];
+		[likesView configureViewWithLikesNumber:currentQuestion.strPraiseNumber];
 		
-		CGRect bottomViewFrame = praiseView.frame;
-		bottomViewFrame.origin.y = webView.scrollView.contentSize.height - CGRectGetHeight(praiseView.frame) - 39;
-		praiseView.frame = bottomViewFrame;
+		CGRect bottomViewFrame = likesView.frame;
+		bottomViewFrame.origin.y = webView.scrollView.contentSize.height - CGRectGetHeight(likesView.frame) - 39;
+		likesView.frame = bottomViewFrame;
 		
-		if (!praiseView.superview) {
-			[webView.scrollView addSubview:praiseView];
+		if (!likesView.superview) {
+			[webView.scrollView addSubview:likesView];
 		}
 	} else {
-		praiseView.hidden = YES;
+		likesView.hidden = YES;
 	}
 }
 

@@ -1,5 +1,5 @@
 //
-//  PraiseView.h
+//  LikesView.h
 //  MyOne
 //
 //  Created by HelloWorld on 8/2/15.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PraiseView : UIView
+@interface LikesView : UIView
 
-- (void)configureViewWithPraiseNumber:(NSString *)praiseNumber;
+- (void)configureViewWithLikesNumber:(NSString *)likesNumber;
 
 @end

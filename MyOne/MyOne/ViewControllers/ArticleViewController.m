@@ -6,20 +6,20 @@
 //  Copyright (c) 2015 melody. All rights reserved.
 //
 
-#import "ReadingViewController.h"
+#import "ArticleViewController.h"
 #import "RightPullToRefreshView.h"
-#import "ReadingEntity.h"
+#import "ArticleEntity.h"
 #import <MJExtension/MJExtension.h>
-#import "ReadingView.h"
+#import "ArticleView.h"
 #import "HTTPTool.h"
 
-@interface ReadingViewController () <RightPullToRefreshViewDelegate, RightPullToRefreshViewDataSource>
+@interface ArticleViewController () <RightPullToRefreshViewDelegate, RightPullToRefreshViewDataSource>
 
 @property (nonatomic, strong) RightPullToRefreshView *rightPullToRefreshView;
 
 @end
 
-@implementation ReadingViewController {
+@implementation ArticleViewController {
 	// 当前一共有多少篇文章，默认为3篇
 	NSInteger numberOfItems;
 	// 保存当前查看过的数据
@@ -97,15 +97,15 @@
 }
 
 - (UIView *)rightPullToRefreshView:(RightPullToRefreshView *)rightPullToRefreshView viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view {
-	ReadingView *readingView = nil;
+	ArticleView *articleView = nil;
 	
 	//create new view if no view is available for recycling
 	if (view == nil) {
 		view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(rightPullToRefreshView.frame), CGRectGetHeight(rightPullToRefreshView.frame))];
-		readingView = [[ReadingView alloc] initWithFrame:view.bounds];
-		[view addSubview:readingView];
+		articleView = [[ArticleView alloc] initWithFrame:view.bounds];
+		[view addSubview:articleView];
 	} else {
-		readingView = (ReadingView *)view.subviews[0];
+		articleView = (ArticleView *)view.subviews[0];
 	}
 	
 	//remember to always set any properties of your carousel item
@@ -113,9 +113,9 @@
 	//you'll get weird issues with carousel item content appearing
 	//in the wrong place in the carousel
 	if (index == numberOfItems - 1 || index == readItems.allKeys.count) {// 当前这个 item 是没有展示过的
-		[readingView refreshSubviewsForNewItem];
+		[articleView refreshSubviewsForNewItem];
 	} else {// 当前这个 item 是展示过了但是没有显示过数据的
-		[readingView configureReadingViewWithReadingEntity:readItems[[@(index) stringValue]]];
+		[articleView configureArticleViewWithArticleEntity:readItems[[@(index) stringValue]]];
 	}
 	
 	return view;
@@ -134,8 +134,8 @@
 	}
 	
 	if (index < readItems.allKeys.count && readItems[[@(index) stringValue]]) {
-		ReadingView *readingView = (ReadingView *)[rightPullToRefreshView itemViewAtIndex:index].subviews[0];
-		[readingView configureReadingViewWithReadingEntity:readItems[[@(index) stringValue]]];
+		ArticleView *articleView = (ArticleView *)[rightPullToRefreshView itemViewAtIndex:index].subviews[0];
+		[articleView configureArticleViewWithArticleEntity:readItems[[@(index) stringValue]]];
 	} else {
 		[self requestReadingContentAtIndex:index];
 	}
@@ -147,8 +147,8 @@
 		for (id subView in rightPullToRefreshView.contentView.subviews) {
 			if (![subView isKindOfClass:[UILabel class]]) {
 				UIView *itemView = (UIView *)subView;
-				ReadingView *readingView = (ReadingView *)itemView.subviews[0].subviews[0];
-				UIWebView *webView = (UIWebView *)[readingView viewWithTag:WebViewTag];
+				ArticleView *articleView = (ArticleView *)itemView.subviews[0].subviews[0];
+				UIWebView *webView = (UIWebView *)[articleView viewWithTag:WebViewTag];
 				if (itemView == currentItemView.superview) {
 					webView.scrollView.scrollsToTop = YES;
 				} else {
@@ -174,10 +174,10 @@
 	NSString *date = [BaseFunction stringDateBeforeTodaySeveralDays:index];
 	[HTTPTool requestReadingContentByDate:date lastUpdateDate:lastUpdateDate success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		if ([responseObject[@"result"] isEqualToString:REQUEST_SUCCESS]) {
-			ReadingEntity *returnReadingEntity = [ReadingEntity objectWithKeyValues:responseObject[@"contentEntity"]];
+			ArticleEntity *returnArticleEntity = [ArticleEntity objectWithKeyValues:responseObject[@"contentEntity"]];
 			if (isRefreshing) {
 				[self endRefreshing];
-				if ([returnReadingEntity.strContentId isEqualToString:((ReadingEntity *)readItems[@"0"]).strContentId]) {// 没有最新数据
+				if ([returnArticleEntity.strContentId isEqualToString:((ArticleEntity *)readItems[@"0"]).strContentId]) {// 没有最新数据
 					[self showHUDWithText:IsLatestData delay:HUD_DELAY];
 				} else {// 有新数据
 					// 删掉所有的已读数据，不用考虑第一个已读数据和最新数据之间相差几天，简单粗暴
@@ -185,10 +185,10 @@
 					[self hideHud];
 				}
 				
-				[self endRequestReadingContent:returnReadingEntity atIndex:index];
+				[self endRequestReadingContent:returnArticleEntity atIndex:index];
 			} else {
 				[self hideHud];
-				[self endRequestReadingContent:returnReadingEntity atIndex:index];
+				[self endRequestReadingContent:returnArticleEntity atIndex:index];
 			}
 		}
 	} failBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -203,8 +203,8 @@
 	[self.rightPullToRefreshView endRefreshing];
 }
 
-- (void)endRequestReadingContent:(ReadingEntity *)readingEntity atIndex:(NSInteger)index {
-	[readItems setObject:readingEntity forKey:[@(index) stringValue]];
+- (void)endRequestReadingContent:(ArticleEntity *)ArticleEntity atIndex:(NSInteger)index {
+	[readItems setObject:ArticleEntity forKey:[@(index) stringValue]];
 	[self.rightPullToRefreshView reloadItemAtIndex:index animated:NO];
 }
 

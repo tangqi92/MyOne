@@ -18,7 +18,11 @@
 - (void)configureImageViwWithImageURL:(NSURL *)url {
     
     [self sd_setImageWithURL:url placeholderImage:nil options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        // progression tracking code
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (image) {
+            // do something with image
+        }
     }];
 }
 

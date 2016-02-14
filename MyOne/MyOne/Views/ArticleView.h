@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ReadingEntity;
+@class ArticleEntity;
 
-@interface ReadingView : UIView
+@interface ArticleView : UIView
 
-- (void)configureReadingViewWithReadingEntity:(ReadingEntity *)readingEntity;
+- (void)configureArticleViewWithArticleEntity:(ArticleEntity *)ArticleEntity;
 
 - (void)refreshSubviewsForNewItem;
 

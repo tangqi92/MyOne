@@ -1,5 +1,5 @@
 //
-//  ReadingEntity.h
+//  ArticleEntity.h
 //  MyOne
 //
 //  Created by HelloWorld on 7/29/15.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ReadingEntity : NSObject
+@interface ArticleEntity : NSObject
 
 //"strContent" : "浪子与六......"
 //"sRdNum" : "112108",

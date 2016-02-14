@@ -6,21 +6,21 @@
 //  Copyright (c) 2015 melody. All rights reserved.
 //
 
-#import "ReadingView.h"
-#import "ReadingEntity.h"
-#import "ReadingAuthorView.h"
+#import "ArticleView.h"
+#import "ArticleEntity.h"
+#import "ArticleAuthorView.h"
 
-@interface ReadingView () <UIWebViewDelegate, UIScrollViewDelegate>
+@interface ArticleView () <UIWebViewDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) UILabel *dateLabel;
-@property (nonatomic, strong) ReadingAuthorView *readingAuthorView;
+@property (nonatomic, strong) ArticleAuthorView *readingAuthorView;
 @property (strong, nonatomic) UIActivityIndicatorView *indicatorView;// item 加载中旋转的菊花：）污
 
 @end
 
-@implementation ReadingView {
-	ReadingEntity *currentContent;
+@implementation ArticleView {
+	ArticleEntity *currentContent;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -84,10 +84,10 @@
 	[self.indicatorView startAnimating];
 }
 
-- (void)configureReadingViewWithReadingEntity:(ReadingEntity *)readingEntity {
-	currentContent = readingEntity;
+- (void)configureArticleViewWithArticleEntity:(ArticleEntity *)ArticleEntity {
+	currentContent = ArticleEntity;
 	
-	self.dateLabel.text = [BaseFunction enMarketTimeWithOriginalMarketTime:readingEntity.strContMarketTime];
+	self.dateLabel.text = [BaseFunction enMarketTimeWithOriginalMarketTime:ArticleEntity.strContMarketTime];
 	
 	NSString *webViewBGColor = Is_Night_Mode ? NightWebViewBGColorName : @"#ffffff";
 	NSString *webViewContentTextColor = Is_Night_Mode ? NightWebViewTextColorName : DawnWebViewTextColorName;
@@ -96,10 +96,10 @@
 	
 	NSMutableString *HTMLContent = [[NSMutableString alloc] init];
 	[HTMLContent appendString:[NSString stringWithFormat:@"<body style=\"margin: 0px; background-color: %@;\"><div style=\"margin-bottom: 10px; background-color: %@;\">", webViewBGColor, webViewBGColor]];
-	[HTMLContent appendString:[NSString stringWithFormat:@"<!-- 文章标题 --><p style=\"color: %@; font-size: 21px; font-weight: bold; margin-top: 34px; margin-left: 15px;\">%@</p>", webViewTitleTextColor, readingEntity.strContTitle]];
-	[HTMLContent appendString:[NSString stringWithFormat:@"<!-- 文章作者 --><p style=\"color: %@; font-size: 14px; font-weight: bold; margin-left: 15px; margin-top: -15px;\">%@</p><p></p>", webViewAuthorTitleTextColor, readingEntity.strContAuthor]];
-	[HTMLContent appendString:[NSString stringWithFormat:@"<!-- 文章内容 --><div style=\"line-height: 26px; margin-top: 15px; margin-left: 15px; margin-right: 15px; color: %@; font-size: 16px;\">%@</div>", webViewContentTextColor, readingEntity.strContent]];
-	[HTMLContent appendString:[NSString stringWithFormat:@"<!-- 文章责任编辑 --><p style=\"color: %@; font-size: 15px; font-style: oblique; margin-left: 15px;\">%@</p></div></body>", webViewContentTextColor, readingEntity.strContAuthorIntroduce]];
+	[HTMLContent appendString:[NSString stringWithFormat:@"<!-- 文章标题 --><p style=\"color: %@; font-size: 21px; font-weight: bold; margin-top: 34px; margin-left: 15px;\">%@</p>", webViewTitleTextColor, ArticleEntity.strContTitle]];
+	[HTMLContent appendString:[NSString stringWithFormat:@"<!-- 文章作者 --><p style=\"color: %@; font-size: 14px; font-weight: bold; margin-left: 15px; margin-top: -15px;\">%@</p><p></p>", webViewAuthorTitleTextColor, ArticleEntity.strContAuthor]];
+	[HTMLContent appendString:[NSString stringWithFormat:@"<!-- 文章内容 --><div style=\"line-height: 26px; margin-top: 15px; margin-left: 15px; margin-right: 15px; color: %@; font-size: 16px;\">%@</div>", webViewContentTextColor, ArticleEntity.strContent]];
+	[HTMLContent appendString:[NSString stringWithFormat:@"<!-- 文章责任编辑 --><p style=\"color: %@; font-size: 15px; font-style: oblique; margin-left: 15px;\">%@</p></div></body>", webViewContentTextColor, ArticleEntity.strContAuthorIntroduce]];
 	
 	[self.webView loadHTMLString:HTMLContent baseURL:nil];
 	self.webView.delegate = self;
@@ -130,17 +130,17 @@
 		}
 	}
 	
-	ReadingAuthorView *readingAuthorView = nil;
+	ArticleAuthorView *articleAuthorView = nil;
 	
 	if (webView.scrollView.subviews.count < 4) {// 小于4说明还没有添加文章底部的作者详情 view
 		// webView 底部添加一个作者的描述视图
-		readingAuthorView = [[ReadingAuthorView alloc] initWithFrame:CGRectZero];
-		readingAuthorView.tag = BottomViewTag;
+		articleAuthorView = [[ArticleAuthorView alloc] initWithFrame:CGRectZero];
+		articleAuthorView.tag = BottomViewTag;
 	} else {
-		readingAuthorView = (ReadingAuthorView *)[webView.scrollView viewWithTag:BottomViewTag];
+		articleAuthorView = (ArticleAuthorView *)[webView.scrollView viewWithTag:BottomViewTag];
 	}
 	
-	[readingAuthorView configureAuthorViewWithReadingEntity:currentContent];
+	[articleAuthorView configureAuthorViewWithArticleEntity:currentContent];
 	
 	// 获取网页内容的真实高度
 	CGFloat webBrowserViewHeight = 0;
@@ -153,15 +153,15 @@
 	}
 	
 	CGSize readingContentSize = webView.scrollView.contentSize;
-	readingContentSize.height = webBrowserViewHeight + CGRectGetHeight(readingAuthorView.frame);
+	readingContentSize.height = webBrowserViewHeight + CGRectGetHeight(articleAuthorView.frame);
 	webView.scrollView.contentSize = readingContentSize;
 	
-	CGFloat bottomViewHeight = CGRectGetHeight(readingAuthorView.frame);
+	CGFloat bottomViewHeight = CGRectGetHeight(articleAuthorView.frame);
 	CGRect bottomViewFrame = CGRectMake(0, webView.scrollView.contentSize.height - bottomViewHeight, SCREEN_WIDTH, bottomViewHeight);
-	readingAuthorView.frame = bottomViewFrame;
+	articleAuthorView.frame = bottomViewFrame;
 	
-	if (!readingAuthorView.superview) {
-		[webView.scrollView addSubview:readingAuthorView];
+	if (!articleAuthorView.superview) {
+		[webView.scrollView addSubview:articleAuthorView];
 	}
 }
 

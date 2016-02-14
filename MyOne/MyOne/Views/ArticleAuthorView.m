@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 melody. All rights reserved.
 //
 
-#import "ReadingAuthorView.h"
-#import "ReadingEntity.h"
+#import "ArticleAuthorView.h"
+#import "ArticleEntity.h"
 
 #define AuthorTextViewColor [UIColor colorWithRed:51 / 255.0 green:51 / 255.0 blue:51 / 255.0 alpha:1] // #333333
 #define AuthorTextColor [UIColor colorWithRed:90 / 255.0 green:91 / 255.0 blue:92 / 255.0 alpha:1] // #5A5B5C
@@ -16,7 +16,7 @@
 #define PaddingLeftRight 15
 #define PaddingTopBottom 30
 
-@interface ReadingAuthorView ()
+@interface ArticleAuthorView ()
 
 @property (strong, nonatomic) UIButton *praiseNumberBtn;
 @property (strong, nonatomic) UIImageView *horizontalLine;
@@ -26,7 +26,7 @@
 
 @end
 
-@implementation ReadingAuthorView
+@implementation ArticleAuthorView
 
 - (instancetype)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
@@ -90,9 +90,9 @@
 	[self addSubview:self.authorDescriptionTextView];
 }
 
-- (void)configureAuthorViewWithReadingEntity:(ReadingEntity *)readingEntity {
+- (void)configureAuthorViewWithArticleEntity:(ArticleEntity *)ArticleEntity {
 	// 点赞按钮
-	[self.praiseNumberBtn setTitle:readingEntity.strPraiseNumber forState:UIControlStateNormal];
+	[self.praiseNumberBtn setTitle:ArticleEntity.strPraiseNumber forState:UIControlStateNormal];
 	[self.praiseNumberBtn sizeToFit];
 //	NSLog(@"self.praiseNumberBtn.frame = %@", NSStringFromCGRect(self.praiseNumberBtn.frame));
 	CGFloat btnWidth = CGRectGetWidth(self.praiseNumberBtn.frame) + 22;
@@ -100,14 +100,14 @@
 	self.praiseNumberBtn.frame = btnFrame;
 	
 	// 作者
-	self.authorLabel.text = readingEntity.strContAuthor;
+	self.authorLabel.text = ArticleEntity.strContAuthor;
 	[self.authorLabel sizeToFit];
 //	NSLog(@"self.authorLabel.frame = %@", NSStringFromCGRect(self.authorLabel.frame));
 	CGRect authorLabelFrame = CGRectMake(PaddingLeftRight, CGRectGetMaxY(self.horizontalLine.frame) + 10, CGRectGetWidth(self.authorLabel.frame), CGRectGetHeight(self.authorLabel.frame));
 	self.authorLabel.frame = authorLabelFrame;
 	
 	// 作者网名
-	self.authorWebNameLabel.text = readingEntity.sWbN;
+	self.authorWebNameLabel.text = ArticleEntity.sWbN;
 	[self.authorWebNameLabel sizeToFit];
 //	NSLog(@"self.authorWebNameLabel.frame = %@", NSStringFromCGRect(self.authorWebNameLabel.frame));
 	CGFloat wnLabelHeight = CGRectGetHeight(self.authorWebNameLabel.frame);
@@ -117,7 +117,7 @@
 	self.authorWebNameLabel.frame = authorWNLabelFrame;
 	
 	// 作者介绍
-	self.authorDescriptionTextView.text = readingEntity.sAuth;
+	self.authorDescriptionTextView.text = ArticleEntity.sAuth;
 	if (Is_Night_Mode) {
 		self.authorDescriptionTextView.textColor = NightTextColor;
 		self.authorDescriptionTextView.backgroundColor = NightBGViewColor;

@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface ReadingViewController : BaseViewController
+@interface ArticleViewController : BaseViewController
 
 @end

@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ReadingEntity;
+@class ArticleEntity;
 
-@interface ReadingAuthorView : UIView
+@interface ArticleAuthorView : UIView
 
-- (void)configureAuthorViewWithReadingEntity:(ReadingEntity *)readingEntity;
+- (void)configureAuthorViewWithArticleEntity:(ArticleEntity *)ArticleEntity;
 
 @end
