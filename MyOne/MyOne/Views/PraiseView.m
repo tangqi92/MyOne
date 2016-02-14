@@ -41,6 +41,7 @@
 	[self.praiseNumberBtn setImage:[UIImage imageNamed:@"home_like_hl"] forState:UIControlStateSelected];
 	self.praiseNumberBtn.imageEdgeInsets = UIEdgeInsetsMake(2, 0, 0, 0);
 	self.praiseNumberBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+    [self.praiseNumberBtn addTarget:self action:@selector(praise) forControlEvents:UIControlEventTouchUpInside];
 	[self addSubview:self.praiseNumberBtn];
 }
 
@@ -51,6 +52,10 @@
 	CGFloat btnWidth = CGRectGetWidth(self.praiseNumberBtn.frame) + 22;
 	CGRect btnFrame = CGRectMake(SCREEN_WIDTH - btnWidth, 30, btnWidth, CGRectGetHeight(self.praiseNumberBtn.frame));
 	self.praiseNumberBtn.frame = btnFrame;
+}
+
+- (void)praise {
+    self.praiseNumberBtn.selected = !self.praiseNumberBtn.isSelected;
 }
 
 /*

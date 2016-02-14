@@ -54,6 +54,7 @@
 	[self.praiseNumberBtn setImage:[UIImage imageNamed:@"home_like_hl"] forState:UIControlStateSelected];
 	self.praiseNumberBtn.imageEdgeInsets = UIEdgeInsetsMake(2, 0, 0, 0);
 	self.praiseNumberBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+    [self.praiseNumberBtn addTarget:self action:@selector(praise) forControlEvents:UIControlEventTouchUpInside];
 	[self addSubview:self.praiseNumberBtn];
 	
 	// 初始化水平分割线
@@ -133,6 +134,10 @@
 	selfFrame.size.height = CGRectGetMaxY(self.authorDescriptionTextView.frame) + 10;
 	self.frame = selfFrame;
 	[self setNeedsDisplay];
+}
+
+- (void)praise {
+    self.praiseNumberBtn.selected = !self.praiseNumberBtn.isSelected;
 }
 
 /*

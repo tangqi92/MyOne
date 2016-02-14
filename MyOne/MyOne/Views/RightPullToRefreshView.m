@@ -87,8 +87,9 @@
 	self.carousel.decelerationRate = 0.6;
 	[self addSubview:self.carousel];
 	
+    // 右滑刷新提示语
 	self.leftRefreshLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-	self.leftRefreshLabel.font = [UIFont systemFontOfSize:10.0f];
+	self.leftRefreshLabel.font = [UIFont systemFontOfSize:14.0f];
 	self.leftRefreshLabel.textColor = LeftRefreshLabelTextColor;
 	self.leftRefreshLabel.nightTextColor = LeftRefreshLabelTextColor;
 	self.leftRefreshLabel.textAlignment = NSTextAlignmentRight;
@@ -197,16 +198,6 @@
 	}
 }
 
-- (void)carouselDidEndDecelerating:(iCarousel *)carousel {
-//	NSLog(@"carousel DidEndDecelerating index = %ld, numberOfItems = %ld", carousel.currentItemIndex, numberOfItems);
-//	if (carousel.currentItemIndex == (numberOfItems - 1)) {
-//		// 如果当前显示的是最后一个，则回调添加 item 方法
-//		if ([self.delegate respondsToSelector:@selector(rightPullToRefreshViewDidScrollToLastItem:)]) {
-//			[self.delegate rightPullToRefreshViewDidScrollToLastItem:self];
-//		}
-//	}
-}
-
 - (void)carouselDidScroll:(iCarousel *)carousel {
 	// 当右拉的时候，改变 leftRefreshLabel 的 x，根据右拉的速度一点点显示 leftRefreshLabel
 	if (carousel.scrollOffset <= 0) {
@@ -235,7 +226,7 @@
 
 - (void)carouselDidEndDragging:(iCarousel *)carousel willDecelerate:(BOOL)decelerate {
 //	NSLog(@"carousel DidEndDragging decelerate = %@", decelerate ? @"YES" : @"NO");
-	// 当当前 item 为第一个的时候，右拉释放，decelerate为 NO，否则为 YES
+	// 当当前 item 为第一个的时候，右拉释放，decelerate 为 NO，否则为 YES
 	if (!decelerate && isNeedRefresh) {// 右拉释放并且需要刷新数据
 		// 设置 leftRefreshLabel 的显示文字、X 轴坐标
 		self.leftRefreshLabel.text = LeftReleaseIsRefreshingHintText;

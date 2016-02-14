@@ -23,37 +23,6 @@ static CGFloat kEndPoint = 1.5;
     }
 }
 
-/*
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    
-    self = [super initWithCoder:aDecoder];
-    
-    if (self) {
-        if (self.color) {
-            [self setNavigationBarWithColor:self.color];
-        } else {
-            [self setNavigationBarWithColor:[UIColor whiteColor]];
-    }
-    
-    return self;
-}
-
--(id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    
-    if (self) {
-        if (self.color) {
-            [self setNavigationBarWithColor:self.color];
-        } else {
-            [self setNavigationBarWithColor:[UIColor whiteColor]];
-        }
-    }
-    
-    return self;
-}
-*/
-
 void drawLinearGradient(CGContextRef context, CGRect rect, CGColorRef startColor, CGColorRef endColor)
 {
      CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -101,19 +70,6 @@ void drawLinearGradient(CGContextRef context, CGRect rect, CGColorRef startColor
     return image;
 }
 
-//-(void)setNavigationBarWithColor:(UIColor *)color
-//{
-//    UIImage *image = [self imageWithColor:color];
-//    
-//    [self setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-//    [self setBarStyle:UIBarStyleDefault];
-//    [self setShadowImage:[UIImage new]];
-//    [self setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-//    [self setTintColor:[UIColor whiteColor]];
-//    [self setTranslucent:YES];
-//
-//}
-
 -(void)setNavigationBarWithColor:(UIColor *)color {
 	UIImage *image = [self imageWithColor:color];
 	
@@ -124,18 +80,6 @@ void drawLinearGradient(CGContextRef context, CGRect rect, CGColorRef startColor
 	[self setTintColor:[UIColor whiteColor]];
 	[self setTranslucent:NO];
 }
-
-//-(void)setNavigationBarWithColors:(NSArray *)colours
-//{
-//    UIImage *image = [self imageWithGradients:colours];
-//    
-//    [self setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-//    [self setBarStyle:UIBarStyleDefault];
-//    [self setShadowImage:[UIImage new]];
-//    [self setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-//    [self setTintColor:[UIColor whiteColor]];
-//    [self setTranslucent:YES];
-//}
 
 -(void)setNavigationBarWithColors:(NSArray *)colours {
 	UIImage *image = [self imageWithGradients:colours];
