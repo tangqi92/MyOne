@@ -10,6 +10,6 @@
 
 @interface CustomImageView : UIImageView
 
-- (void)configureImageViwWithImageURL:(NSURL *)url animated:(BOOL)animated;
+- (void)configureImageViwWithImageURL:(NSURL *)url;
 
 @end

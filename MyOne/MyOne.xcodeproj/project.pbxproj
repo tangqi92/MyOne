@@ -71,7 +71,6 @@
 		82E75E9B1B678057000C8106 /* RightPullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E75E9A1B678057000C8106 /* RightPullToRefreshView.m */; };
 		82EE5A2E1B6F51240012DAFD /* HTTPTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE5A2D1B6F51240012DAFD /* HTTPTool.m */; };
 		82EE5A311B6F611B0012DAFD /* CustomImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE5A301B6F611B0012DAFD /* CustomImageView.m */; };
-		82EE5A341B6F624A0012DAFD /* CircularLoaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE5A331B6F624A0012DAFD /* CircularLoaderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,8 +195,6 @@
 		82EE5A2D1B6F51240012DAFD /* HTTPTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPTool.m; sourceTree = "<group>"; };
 		82EE5A2F1B6F611B0012DAFD /* CustomImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomImageView.h; sourceTree = "<group>"; };
 		82EE5A301B6F611B0012DAFD /* CustomImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomImageView.m; sourceTree = "<group>"; };
-		82EE5A321B6F624A0012DAFD /* CircularLoaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularLoaderView.h; sourceTree = "<group>"; };
-		82EE5A331B6F624A0012DAFD /* CircularLoaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularLoaderView.m; sourceTree = "<group>"; };
 		BFAA7262EA632554AE692584 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -484,8 +481,6 @@
 				82A7269D1B6DFD3300348EAC /* ReadingView.m */,
 				82EE5A2F1B6F611B0012DAFD /* CustomImageView.h */,
 				82EE5A301B6F611B0012DAFD /* CustomImageView.m */,
-				82EE5A321B6F624A0012DAFD /* CircularLoaderView.h */,
-				82EE5A331B6F624A0012DAFD /* CircularLoaderView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -702,7 +697,6 @@
 				8213923A1B6A4749004D91EF /* ReadingAuthorView.m in Sources */,
 				82E75E7D1B65F5CD000C8106 /* PersonViewController.m in Sources */,
 				829059441BCE348200084E7E /* TopWindow.m in Sources */,
-				82EE5A341B6F624A0012DAFD /* CircularLoaderView.m in Sources */,
 				821392451B6B3A9D004D91EF /* HomeView.m in Sources */,
 				8269D2821B65DC5C0041AE0B /* main.m in Sources */,
 				82E75E8A1B66102C000C8106 /* AppConfigure.m in Sources */,

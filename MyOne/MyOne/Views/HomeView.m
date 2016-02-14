@@ -237,7 +237,7 @@
 	}
 	
 	self.volLabel.text = homeEntity.strHpTitle;
-	[self.paintImageView configureImageViwWithImageURL:[NSURL URLWithString:homeEntity.strThumbnailUrl] animated:animated];
+	[self.paintImageView configureImageViwWithImageURL:[NSURL URLWithString:homeEntity.strThumbnailUrl]];
 	self.paintNameLabel.text = [homeEntity.strAuthor componentsSeparatedByString:@"&"][0];
 	self.paintAuthorLabel.text = [homeEntity.strAuthor componentsSeparatedByString:@"&"][1];
 	NSString *marketTime = [BaseFunction homeENMarketTimeWithOriginalMarketTime:homeEntity.strMarketTime];
