@@ -32,7 +32,7 @@
 @property (nonatomic, copy) NSString *strContentId;
 @property (nonatomic, copy) NSString *subTitle;
 @property (nonatomic, copy) NSString *strContDayDiffer;
-@property (nonatomic, copy) NSString *strPraiseNumber;
+@property (nonatomic, copy) NSString *strPraiseNumber;  // 真想把你改成 strLikesNumber（ ＴДＴ）
 @property (nonatomic, copy) NSString *strLastUpdateDate;
 @property (nonatomic, copy) NSString *sGW;
 @property (nonatomic, copy) NSString *sAuth;

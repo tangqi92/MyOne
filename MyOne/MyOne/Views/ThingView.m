@@ -22,7 +22,7 @@
 @property (nonatomic, strong) UIImageView *thingImageView;
 @property (nonatomic, strong) UILabel *thingNameLabel;
 @property (nonatomic, strong) UITextView *thingDescriptionTextView;
-@property (strong, nonatomic) UIActivityIndicatorView *indicatorView;// item 加载中旋转的菊花：）污
+@property (nonatomic, strong) UIActivityIndicatorView *indicatorView;// item 加载中旋转的菊花：）污
 
 @end
 

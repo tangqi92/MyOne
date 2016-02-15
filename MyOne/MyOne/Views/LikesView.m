@@ -10,7 +10,7 @@
 
 @interface LikesView ()
 
-@property (strong, nonatomic) UIButton *likeNumberBtn;
+@property (strong, nonatomic) UIButton *likesNumberBtn;
 
 @end
 
@@ -31,31 +31,31 @@
 	self.backgroundColor = [UIColor clearColor];
 	self.nightBackgroundColor = [UIColor clearColor];
 	// 初始化点赞 Button
-	self.likeNumberBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-	self.likeNumberBtn.titleLabel.font = systemFont(12);
-	[self.likeNumberBtn setTitleColor:PraiseBtnTextColor forState:UIControlStateNormal];
-	self.likeNumberBtn.nightTitleColor = PraiseBtnTextColor;
+	self.likesNumberBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+	self.likesNumberBtn.titleLabel.font = systemFont(12);
+	[self.likesNumberBtn setTitleColor:LikesBtnTextColor forState:UIControlStateNormal];
+	self.likesNumberBtn.nightTitleColor = LikesBtnTextColor;
 	UIImage *btnImage = [[UIImage imageNamed:@"home_likeBg"] stretchableImageWithLeftCapWidth:20 topCapHeight:2];
-	[self.likeNumberBtn setBackgroundImage:btnImage forState:UIControlStateNormal];
-	[self.likeNumberBtn setImage:[UIImage imageNamed:@"home_like"] forState:UIControlStateNormal];
-	[self.likeNumberBtn setImage:[UIImage imageNamed:@"home_like_hl"] forState:UIControlStateSelected];
-	self.likeNumberBtn.imageEdgeInsets = UIEdgeInsetsMake(2, 0, 0, 0);
-	self.likeNumberBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-    [self.likeNumberBtn addTarget:self action:@selector(like) forControlEvents:UIControlEventTouchUpInside];
-	[self addSubview:self.likeNumberBtn];
+	[self.likesNumberBtn setBackgroundImage:btnImage forState:UIControlStateNormal];
+	[self.likesNumberBtn setImage:[UIImage imageNamed:@"home_like"] forState:UIControlStateNormal];
+	[self.likesNumberBtn setImage:[UIImage imageNamed:@"home_like_hl"] forState:UIControlStateSelected];
+	self.likesNumberBtn.imageEdgeInsets = UIEdgeInsetsMake(2, 0, 0, 0);
+	self.likesNumberBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+    [self.likesNumberBtn addTarget:self action:@selector(like) forControlEvents:UIControlEventTouchUpInside];
+	[self addSubview:self.likesNumberBtn];
 }
 
 - (void)configureViewWithLikesNumber:(NSString *)likesNumber {
-	[self.likeNumberBtn setTitle:likesNumber forState:UIControlStateNormal];
-	[self.likeNumberBtn sizeToFit];
+	[self.likesNumberBtn setTitle:likesNumber forState:UIControlStateNormal];
+	[self.likesNumberBtn sizeToFit];
 //	NSLog(@"self.praiseNumberBtn.frame = %@", NSStringFromCGRect(self.praiseNumberBtn.frame));
-	CGFloat btnWidth = CGRectGetWidth(self.likeNumberBtn.frame) + 22;
-	CGRect btnFrame = CGRectMake(SCREEN_WIDTH - btnWidth, 30, btnWidth, CGRectGetHeight(self.likeNumberBtn.frame));
-	self.likeNumberBtn.frame = btnFrame;
+	CGFloat btnWidth = CGRectGetWidth(self.likesNumberBtn.frame) + 22;
+	CGRect btnFrame = CGRectMake(SCREEN_WIDTH - btnWidth, 30, btnWidth, CGRectGetHeight(self.likesNumberBtn.frame));
+	self.likesNumberBtn.frame = btnFrame;
 }
 
 - (void)like {
-    self.likeNumberBtn.selected = !self.likeNumberBtn.isSelected;
+    self.likesNumberBtn.selected = !self.likesNumberBtn.isSelected;
 }
 
 /*

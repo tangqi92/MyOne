@@ -14,8 +14,8 @@
 
 @interface RightPullToRefreshView () <iCarouselDataSource, iCarouselDelegate>
 
-@property (strong, nonatomic) iCarousel *carousel;
-@property (strong, nonatomic) UILabel *leftRefreshLabel;
+@property (nonatomic, strong) iCarousel *carousel;
+@property (nonatomic, strong) UILabel *leftRefreshLabel;
 
 @end
 

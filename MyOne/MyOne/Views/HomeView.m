@@ -27,7 +27,7 @@
 @property (nonatomic, strong) UILabel *monthAndYearLabel;
 @property (nonatomic, strong) UIImageView *contentBGImageView;
 @property (nonatomic, strong) UITextView *contentTextView;
-@property (nonatomic, strong) UIButton *praiseNumberBtn;
+@property (nonatomic, strong) UIButton *likesNumberBtn;
 @property (nonatomic, strong) UIActivityIndicatorView *indicatorView;// item 加载中旋转的菊花：）污
 
 @end
@@ -188,19 +188,19 @@
 	}];
 	
 	// 初始化点赞按钮
-	self.praiseNumberBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-	self.praiseNumberBtn.titleLabel.font = systemFont(12);
-	[self.praiseNumberBtn setTitleColor:PraiseBtnTextColor forState:UIControlStateNormal];
-	self.praiseNumberBtn.nightTitleColor = PraiseBtnTextColor;
+	self.likesNumberBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+	self.likesNumberBtn.titleLabel.font = systemFont(12);
+	[self.likesNumberBtn setTitleColor:LikesBtnTextColor forState:UIControlStateNormal];
+	self.likesNumberBtn.nightTitleColor = LikesBtnTextColor;
 	UIImage *btnImage = [[UIImage imageNamed:@"home_likeBg"] stretchableImageWithLeftCapWidth:20 topCapHeight:2];
-	[self.praiseNumberBtn setBackgroundImage:btnImage forState:UIControlStateNormal];
-	[self.praiseNumberBtn setImage:[UIImage imageNamed:@"home_like"] forState:UIControlStateNormal];
-	[self.praiseNumberBtn setImage:[UIImage imageNamed:@"home_like_hl"] forState:UIControlStateSelected];
-	self.praiseNumberBtn.imageEdgeInsets = UIEdgeInsetsMake(2, 0, 0, 0);
-	self.praiseNumberBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 10);
-	[self.praiseNumberBtn addTarget:self action:@selector(praise) forControlEvents:UIControlEventTouchUpInside];
-	[self.containerView addSubview:self.praiseNumberBtn];
-	[self.praiseNumberBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+	[self.likesNumberBtn setBackgroundImage:btnImage forState:UIControlStateNormal];
+	[self.likesNumberBtn setImage:[UIImage imageNamed:@"home_like"] forState:UIControlStateNormal];
+	[self.likesNumberBtn setImage:[UIImage imageNamed:@"home_like_hl"] forState:UIControlStateSelected];
+	self.likesNumberBtn.imageEdgeInsets = UIEdgeInsetsMake(2, 0, 0, 0);
+	self.likesNumberBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 10);
+	[self.likesNumberBtn addTarget:self action:@selector(like) forControlEvents:UIControlEventTouchUpInside];
+	[self.containerView addSubview:self.likesNumberBtn];
+	[self.likesNumberBtn mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.top.equalTo(self.contentBGImageView.mas_bottom).with.offset(30);
 		make.right.equalTo(self.containerView.mas_right).with.offset(0);
 		make.height.mas_equalTo(@28);
@@ -270,8 +270,8 @@
 		self.contentBGImageView.image = [[UIImage imageNamed:@"contBack"] stretchableImageWithLeftCapWidth:20 topCapHeight:20];
 	}
 	
-	[self.praiseNumberBtn setTitle:[NSString stringWithFormat:@"  %@", homeEntity.strPn] forState:UIControlStateNormal];
-	[self.praiseNumberBtn sizeToFit];
+	[self.likesNumberBtn setTitle:[NSString stringWithFormat:@"  %@", homeEntity.strPn] forState:UIControlStateNormal];
+	[self.likesNumberBtn sizeToFit];
 
 	self.scrollView.contentSize = CGSizeMake(0, CGRectGetHeight(self.containerView.frame));
 }
@@ -289,8 +289,8 @@
 	
 	self.contentBGImageView.image = nil;
 	
-	[self.praiseNumberBtn setTitle:@"" forState:UIControlStateNormal];
-	[self.praiseNumberBtn sizeToFit];
+	[self.likesNumberBtn setTitle:@"" forState:UIControlStateNormal];
+	[self.likesNumberBtn sizeToFit];
 	
 	self.containerView.hidden = YES;
 	self.scrollView.scrollsToTop = NO;
@@ -298,8 +298,8 @@
 	[self startRefreshing];
 }
 
-- (void)praise {
-	self.praiseNumberBtn.selected = !self.praiseNumberBtn.isSelected;
+- (void)like {
+	self.likesNumberBtn.selected = !self.likesNumberBtn.isSelected;
 }
 
 /*

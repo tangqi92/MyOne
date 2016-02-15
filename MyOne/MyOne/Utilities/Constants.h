@@ -15,8 +15,8 @@
 
 #define HUD_DELAY 1.5
 
-#define BadNetwork @"Bad Net Status"
-#define IsLatestData @"已是最新数据"
+#define BadNetwork @"网络异常"
+#define IsLatestData @"已经是最新的啦(>_<｡)"
 
 #define REQUEST_SUCCESS @"SUCCESS"
 
@@ -34,7 +34,7 @@
 #define WebViewBGColor [UIColor whiteColor] // [UIColor colorWithRed:249 / 255.0 green:249 / 255.0 blue:249 / 255.0 alpha:1]
 #define VOLTextColor [UIColor colorWithRed:85 / 255.0 green:85 / 255.0 blue:85 / 255.0 alpha:1] // #555555
 #define DateTextColor [UIColor colorWithRed:85 / 255.0 green:85 / 255.0 blue:85 / 255.0 alpha:1] // #555555
-#define PraiseBtnTextColor [UIColor colorWithRed:80 / 255.0 green:80 / 255.0 blue:80 / 255.0 alpha:1] // #505050
+#define LikesBtnTextColor [UIColor colorWithRed:80 / 255.0 green:80 / 255.0 blue:80 / 255.0 alpha:1] // #505050
 
 #define TitleTextColor [UIColor colorWithRed:91 / 255.0 green:91 / 255.0 blue:91 / 255.0 alpha:1] // #5B5B5B
 
