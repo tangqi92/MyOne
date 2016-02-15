@@ -18,7 +18,7 @@
 
 @interface ArticleAuthorView ()
 
-@property (strong, nonatomic) UIButton *praiseNumberBtn;
+@property (strong, nonatomic) UIButton *likeNumberBtn;
 @property (strong, nonatomic) UIImageView *horizontalLine;
 @property (strong, nonatomic) UILabel *authorLabel;
 @property (strong, nonatomic) UILabel *authorWebNameLabel;
@@ -44,18 +44,18 @@
 	// 设置夜间模式背景色
 	self.nightBackgroundColor = NightBGViewColor;
 	// 初始化点赞 Button
-	self.praiseNumberBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-	self.praiseNumberBtn.titleLabel.font = systemFont(12);
-	[self.praiseNumberBtn setTitleColor:PraiseBtnTextColor forState:UIControlStateNormal];
-	self.praiseNumberBtn.nightTitleColor = PraiseBtnTextColor;
+	self.likeNumberBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+	self.likeNumberBtn.titleLabel.font = systemFont(12);
+	[self.likeNumberBtn setTitleColor:PraiseBtnTextColor forState:UIControlStateNormal];
+	self.likeNumberBtn.nightTitleColor = PraiseBtnTextColor;
 	UIImage *btnImage = [[UIImage imageNamed:@"home_likeBg"] stretchableImageWithLeftCapWidth:45 topCapHeight:0];
-	[self.praiseNumberBtn setBackgroundImage:btnImage forState:UIControlStateNormal];
-	[self.praiseNumberBtn setImage:[UIImage imageNamed:@"home_like"] forState:UIControlStateNormal];
-	[self.praiseNumberBtn setImage:[UIImage imageNamed:@"home_like_hl"] forState:UIControlStateSelected];
-	self.praiseNumberBtn.imageEdgeInsets = UIEdgeInsetsMake(2, 0, 0, 0);
-	self.praiseNumberBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-    [self.praiseNumberBtn addTarget:self action:@selector(praise) forControlEvents:UIControlEventTouchUpInside];
-	[self addSubview:self.praiseNumberBtn];
+	[self.likeNumberBtn setBackgroundImage:btnImage forState:UIControlStateNormal];
+	[self.likeNumberBtn setImage:[UIImage imageNamed:@"home_like"] forState:UIControlStateNormal];
+	[self.likeNumberBtn setImage:[UIImage imageNamed:@"home_like_hl"] forState:UIControlStateSelected];
+	self.likeNumberBtn.imageEdgeInsets = UIEdgeInsetsMake(2, 0, 0, 0);
+	self.likeNumberBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+    [self.likeNumberBtn addTarget:self action:@selector(praise) forControlEvents:UIControlEventTouchUpInside];
+	[self addSubview:self.likeNumberBtn];
 	
 	// 初始化水平分割线
 	self.horizontalLine = [[UIImageView alloc] initWithFrame:CGRectMake(PaddingLeftRight, 88, SCREEN_WIDTH - PaddingLeftRight * 2, 1)];
@@ -92,12 +92,12 @@
 
 - (void)configureAuthorViewWithArticleEntity:(ArticleEntity *)ArticleEntity {
 	// 点赞按钮
-	[self.praiseNumberBtn setTitle:ArticleEntity.strPraiseNumber forState:UIControlStateNormal];
-	[self.praiseNumberBtn sizeToFit];
-//	NSLog(@"self.praiseNumberBtn.frame = %@", NSStringFromCGRect(self.praiseNumberBtn.frame));
-	CGFloat btnWidth = CGRectGetWidth(self.praiseNumberBtn.frame) + 22;
-	CGRect btnFrame = CGRectMake(SCREEN_WIDTH - btnWidth, PaddingTopBottom, btnWidth, CGRectGetHeight(self.praiseNumberBtn.frame));
-	self.praiseNumberBtn.frame = btnFrame;
+	[self.likeNumberBtn setTitle:ArticleEntity.strPraiseNumber forState:UIControlStateNormal];
+	[self.likeNumberBtn sizeToFit];
+//	NSLog(@"self.likeNumberBtn.frame = %@", NSStringFromCGRect(self.likeNumberBtn.frame));
+	CGFloat btnWidth = CGRectGetWidth(self.likeNumberBtn.frame) + 22;
+	CGRect btnFrame = CGRectMake(SCREEN_WIDTH - btnWidth, PaddingTopBottom, btnWidth, CGRectGetHeight(self.likeNumberBtn.frame));
+	self.likeNumberBtn.frame = btnFrame;
 	
 	// 作者
 	self.authorLabel.text = ArticleEntity.strContAuthor;
@@ -137,7 +137,7 @@
 }
 
 - (void)praise {
-    self.praiseNumberBtn.selected = !self.praiseNumberBtn.isSelected;
+    self.likeNumberBtn.selected = !self.likeNumberBtn.isSelected;
 }
 
 /*

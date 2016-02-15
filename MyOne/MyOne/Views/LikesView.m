@@ -41,7 +41,7 @@
 	[self.likeNumberBtn setImage:[UIImage imageNamed:@"home_like_hl"] forState:UIControlStateSelected];
 	self.likeNumberBtn.imageEdgeInsets = UIEdgeInsetsMake(2, 0, 0, 0);
 	self.likeNumberBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-    [self.likeNumberBtn addTarget:self action:@selector(praise) forControlEvents:UIControlEventTouchUpInside];
+    [self.likeNumberBtn addTarget:self action:@selector(like) forControlEvents:UIControlEventTouchUpInside];
 	[self addSubview:self.likeNumberBtn];
 }
 
@@ -54,7 +54,7 @@
 	self.likeNumberBtn.frame = btnFrame;
 }
 
-- (void)praise {
+- (void)like {
     self.likeNumberBtn.selected = !self.likeNumberBtn.isSelected;
 }
 

@@ -8,8 +8,8 @@
 
 #import "HomeView.h"
 #import "HomeEntity.h"
-#import "CustomImageView.h"
 #import <Masonry/Masonry.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #define PaintInfoTextColor [UIColor colorWithRed:85 / 255.0 green:85 / 255.0 blue:85 / 255.0 alpha:1] // #555555
 #define DayTextColor [UIColor colorWithRed:55 / 255.0 green:194 / 255.0 blue:241 / 255.0 alpha:1] // #37C2F1
@@ -20,7 +20,7 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) UILabel *volLabel;
-@property (nonatomic, strong) CustomImageView *paintImageView;
+@property (nonatomic, strong) UIImageView *paintImageView;
 @property (nonatomic, strong) UILabel *paintNameLabel;
 @property (nonatomic, strong) UILabel *paintAuthorLabel;
 @property (nonatomic, strong) UILabel *dayLabel;
@@ -89,7 +89,7 @@
 	}];
 	
 	// 初始化显示画控件
-	self.paintImageView = [[CustomImageView alloc] init];
+	self.paintImageView = [[UIImageView alloc] init];
 	self.paintImageView.backgroundColor = [UIColor whiteColor];
 	self.paintImageView.nightBackgroundColor = NightBGViewColor;
 	[self.containerView addSubview:self.paintImageView];
@@ -237,7 +237,7 @@
 	}
 	
 	self.volLabel.text = homeEntity.strHpTitle;
-	[self.paintImageView configureImageViwWithImageURL:[NSURL URLWithString:homeEntity.strThumbnailUrl]];
+	[self.paintImageView sd_setImageWithURL:[NSURL URLWithString:homeEntity.strThumbnailUrl]];
 	self.paintNameLabel.text = [homeEntity.strAuthor componentsSeparatedByString:@"&"][0];
 	self.paintAuthorLabel.text = [homeEntity.strAuthor componentsSeparatedByString:@"&"][1];
 	NSString *marketTime = [BaseFunction homeENMarketTimeWithOriginalMarketTime:homeEntity.strMarketTime];

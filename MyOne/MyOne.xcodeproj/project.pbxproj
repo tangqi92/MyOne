@@ -70,7 +70,6 @@
 		82E75E981B6753C9000C8106 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E75E971B6753C9000C8106 /* BaseViewController.m */; };
 		82E75E9B1B678057000C8106 /* RightPullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E75E9A1B678057000C8106 /* RightPullToRefreshView.m */; };
 		82EE5A2E1B6F51240012DAFD /* HTTPTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE5A2D1B6F51240012DAFD /* HTTPTool.m */; };
-		82EE5A311B6F611B0012DAFD /* CustomImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE5A301B6F611B0012DAFD /* CustomImageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -193,8 +192,6 @@
 		82E75E9A1B678057000C8106 /* RightPullToRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightPullToRefreshView.m; sourceTree = "<group>"; };
 		82EE5A2C1B6F51240012DAFD /* HTTPTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPTool.h; sourceTree = "<group>"; };
 		82EE5A2D1B6F51240012DAFD /* HTTPTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPTool.m; sourceTree = "<group>"; };
-		82EE5A2F1B6F611B0012DAFD /* CustomImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomImageView.h; sourceTree = "<group>"; };
-		82EE5A301B6F611B0012DAFD /* CustomImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomImageView.m; sourceTree = "<group>"; };
 		BFAA7262EA632554AE692584 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -478,8 +475,6 @@
 				82A7269A1B6DF10F00348EAC /* LikesView.m */,
 				82A7269C1B6DFD3300348EAC /* ArticleView.h */,
 				82A7269D1B6DFD3300348EAC /* ArticleView.m */,
-				82EE5A2F1B6F611B0012DAFD /* CustomImageView.h */,
-				82EE5A301B6F611B0012DAFD /* CustomImageView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -678,7 +673,6 @@
 				82A7269E1B6DFD3300348EAC /* ArticleView.m in Sources */,
 				82A726951B6DB60000348EAC /* ThingView.m in Sources */,
 				82A7269B1B6DF10F00348EAC /* LikesView.m in Sources */,
-				82EE5A311B6F611B0012DAFD /* CustomImageView.m in Sources */,
 				82E75E7A1B65F5C1000C8106 /* ThingViewController.m in Sources */,
 				82E75E9B1B678057000C8106 /* RightPullToRefreshView.m in Sources */,
 				82E75E801B65F636000C8106 /* AboutViewController.m in Sources */,

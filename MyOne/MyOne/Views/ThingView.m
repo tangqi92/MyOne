@@ -9,7 +9,7 @@
 #import "ThingView.h"
 #import "ThingEntity.h"
 #import <Masonry/Masonry.h>
-#import "CustomImageView.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #define ThingNameTextColor [UIColor colorWithRed:90 / 255.0 green:91 / 255.0 blue:92 / 255.0 alpha:1] // #5A5B5C
 #define ThingDescriptionColor [UIColor colorWithRed:51 / 255.0 green:51 / 255.0 blue:51 / 255.0 alpha:1] // #333333
@@ -19,7 +19,7 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) UILabel *dateLabel;
-@property (nonatomic, strong) CustomImageView *thingImageView;
+@property (nonatomic, strong) UIImageView *thingImageView;
 @property (nonatomic, strong) UILabel *thingNameLabel;
 @property (nonatomic, strong) UITextView *thingDescriptionTextView;
 @property (strong, nonatomic) UIActivityIndicatorView *indicatorView;// item 加载中旋转的菊花：）污
@@ -82,7 +82,7 @@
 	}];
 	
 	// 初始化东西图片控件
-	self.thingImageView = [[CustomImageView alloc] init];
+	self.thingImageView = [[UIImageView alloc] init];
 	self.thingImageView.backgroundColor = [UIColor whiteColor];
 	self.thingImageView.nightBackgroundColor = NightBGViewColor;
 	CGFloat imgWidth = SCREEN_WIDTH - 20;
@@ -158,7 +158,7 @@
 	}
 	
 	self.dateLabel.text = [BaseFunction enMarketTimeWithOriginalMarketTime:thingEntity.strTm];
-	[self.thingImageView configureImageViwWithImageURL:[NSURL URLWithString:thingEntity.strBu]];
+	[self.thingImageView sd_setImageWithURL: [NSURL URLWithString:thingEntity.strBu]];
 	self.thingNameLabel.text = thingEntity.strTt;
 
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
