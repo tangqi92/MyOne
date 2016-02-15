@@ -158,7 +158,7 @@
 	}
 	
 	self.dateLabel.text = [BaseFunction enMarketTimeWithOriginalMarketTime:thingEntity.strTm];
-	[self.thingImageView sd_setImageWithURL: [NSURL URLWithString:thingEntity.strBu]];
+	[self.thingImageView sd_setImageWithURL:[NSURL URLWithString:thingEntity.strBu]];
 	self.thingNameLabel.text = thingEntity.strTt;
 
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];

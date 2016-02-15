@@ -9,9 +9,9 @@
 #import "ArticleViewController.h"
 #import "RightPullToRefreshView.h"
 #import "ArticleEntity.h"
-#import <MJExtension/MJExtension.h>
 #import "ArticleView.h"
 #import "HTTPTool.h"
+#import <MJExtension/MJExtension.h>
 
 @interface ArticleViewController () <RightPullToRefreshViewDelegate, RightPullToRefreshViewDataSource>
 

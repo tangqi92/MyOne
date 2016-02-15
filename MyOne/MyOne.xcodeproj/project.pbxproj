@@ -331,7 +331,7 @@
 		8269D27E1B65DC5C0041AE0B /* MyOne */ = {
 			isa = PBXGroup;
 			children = (
-				82A726A21B6E264200348EAC /* ThirdParty */,
+				82A726A21B6E264200348EAC /* Vendor */,
 				821392491B6BA5B8004D91EF /* Fonts */,
 				828F6D2A1B68E97F007521F0 /* Modules */,
 				82E75E6E1B65F553000C8106 /* Views */,
@@ -403,11 +403,12 @@
 			path = Modules;
 			sourceTree = "<group>";
 		};
-		82A726A21B6E264200348EAC /* ThirdParty */ = {
+		82A726A21B6E264200348EAC /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
 				82A726A31B6E264200348EAC /* DSNavigationBar */,
 			);
+			name = Vendor;
 			path = ThirdParty;
 			sourceTree = "<group>";
 		};

@@ -9,9 +9,9 @@
 #import "HomeViewController.h"
 #import "RightPullToRefreshView.h"
 #import "HomeEntity.h"
-#import <MJExtension/MJExtension.h>
 #import "HomeView.h"
 #import "HTTPTool.h"
+#import <MJExtension/MJExtension.h>
 
 @interface HomeViewController () <RightPullToRefreshViewDelegate, RightPullToRefreshViewDataSource>
 

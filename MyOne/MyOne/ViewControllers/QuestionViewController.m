@@ -9,9 +9,9 @@
 #import "QuestionViewController.h"
 #import "RightPullToRefreshView.h"
 #import "QuestionEntity.h"
-#import <MJExtension/MJExtension.h>
 #import "QuestionView.h"
 #import "HTTPTool.h"
+#import <MJExtension/MJExtension.h>
 
 @interface QuestionViewController () <RightPullToRefreshViewDelegate, RightPullToRefreshViewDataSource>
 

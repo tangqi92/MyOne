@@ -9,9 +9,9 @@
 #import "ThingViewController.h"
 #import "RightPullToRefreshView.h"
 #import "ThingEntity.h"
-#import <MJExtension/MJExtension.h>
 #import "ThingView.h"
 #import "HTTPTool.h"
+#import <MJExtension/MJExtension.h>
 
 @interface ThingViewController () <RightPullToRefreshViewDelegate, RightPullToRefreshViewDataSource>
 
