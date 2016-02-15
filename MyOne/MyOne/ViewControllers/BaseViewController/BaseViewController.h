@@ -10,6 +10,8 @@
 
 @interface BaseViewController : UIViewController
 
+@property (nonatomic, copy) void (^hudWasHidden)(void);
+
 - (UIImage *)imageWithColor:(UIColor *)color;
 
 /**
@@ -29,29 +31,15 @@
  */
 - (void)dontShowBackButtonTitle;
 
-- (void)showHUDWaitingWhileExecuting:(SEL)method;
-
-- (void)showHUDWithText:(NSString *)text delay:(NSTimeInterval)delay;
-
-- (void)showHUDDone;
-
-- (void)showHUDDoneWithText:(NSString *)text;
-
-- (void)showHUDErrorWithText:(NSString *)text;
-
-- (void)showHUDNetError;
-
-- (void)showHUDServerError;
-
-- (void)showWithLabelText:(NSString *)showText executing:(SEL)method;
-
+/**
+ *  提示相关方法
+ */
 - (void)showHUDWithText:(NSString *)text;
+- (void)showHUDWithText:(NSString *)text delay:(NSTimeInterval)delay;
 
 /**
  *  隐藏当前显示的提示框
  */
 - (void)hideHud;
-
-@property (nonatomic, copy) void (^hudWasHidden)(void);
 
 @end

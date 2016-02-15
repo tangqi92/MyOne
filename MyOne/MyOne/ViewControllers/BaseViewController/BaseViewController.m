@@ -11,6 +11,7 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
+
 @interface BaseViewController () <MBProgressHUDDelegate>
 
 @property (nonatomic, strong) UIView *panelView;
@@ -88,20 +89,6 @@
 
 #pragma mark - MBProgressHUD
 
-- (void)showHUDWaitingWhileExecuting:(SEL)method {
-    // The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:HUD];
-    
-    HUD.color = [UIColor colorWithRed:100 / 255.0 green:100 / 255.0 blue:100 / 255.0 alpha:0.9];
-    
-    // Regiser for HUD callbacks so we can remove it from the window at the right time
-    HUD.delegate = self;
-    
-    // Show the HUD while the provided method executes in a new thread
-    [HUD showWhileExecuting:method onTarget:self withObject:nil animated:YES];
-}
-
 - (void)showHUDWithText:(NSString *)text delay:(NSTimeInterval)delay {
     if (!HUD.isHidden) {
         [HUD hide:NO];
@@ -117,60 +104,6 @@
     [HUD hide:YES afterDelay:delay];
 }
 
-- (void)showHUDDone {
-    [self showHUDDoneWithText:@"Done"];
-}
-
-- (void)showHUDDoneWithText:(NSString *)text {
-    if (!HUD.isHidden) {
-        [HUD hide:NO];
-    }
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:HUD];
-    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"common_icon_right"]];
-    HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = text;
-    // Regiser for HUD callbacks so we can remove it from the window at the right time
-    HUD.delegate = self;
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:HUD_DELAY];
-}
-
-- (void)showHUDErrorWithText:(NSString *)text {
-    if (!HUD.isHidden) {
-        [HUD hide:NO];
-    }
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:HUD];
-    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"common_icon_error"]];
-    HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = text;
-    // Regiser for HUD callbacks so we can remove it from the window at the right time
-    HUD.delegate = self;
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:HUD_DELAY];
-}
-
-- (void)showHUDNetError {
-    [self showHUDErrorWithText:BadNetwork];
-}
-
-- (void)showHUDServerError {
-    [self showHUDErrorWithText:@"Server Error"];
-}
-
-- (void)showWithLabelText:(NSString *)showText executing:(SEL)method {
-    if (!HUD.isHidden) {
-        [HUD hide:NO];
-    }
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:HUD];
-    HUD.labelText = showText;
-    // Regiser for HUD callbacks so we can remove it from the window at the right time
-    HUD.delegate = self;
-    [HUD showWhileExecuting:method onTarget:self withObject:nil animated:YES];
-}
-
 - (void)showHUDWithText:(NSString *)text {
     [self hideHud];
     HUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
@@ -181,14 +114,6 @@
     // Regiser for HUD callbacks so we can remove it from the window at the right time
     HUD.delegate = self;
     HUD.removeFromSuperViewOnHide = YES;
-}
-
-- (void)processServerErrorWithCode:(NSInteger)code andErrorMsg:(NSString *)msg {
-    if (code == 500) {
-        [self showHUDServerError];
-    } else {
-        [self showHUDDoneWithText:msg];
-    }
 }
 
 - (void)hideHud {
@@ -205,15 +130,6 @@
     }
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 #pragma mark - ShareAction
 
 - (void)shareToSocial
@@ -317,15 +233,11 @@
  *
  *  @param flag YES 显示，NO 不显示
  */
-- (void)showLoadingView:(BOOL)flag
-{
-    if (flag)
-    {
+- (void)showLoadingView:(BOOL)flag {
+    if (flag) {
         [self.view addSubview:self.panelView];
         [self.loadingView startAnimating];
-    }
-    else
-    {
+    } else {
         [self.panelView removeFromSuperview];
     }
 }

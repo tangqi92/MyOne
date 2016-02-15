@@ -33,7 +33,6 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     /**
      *  设置ShareSDK的appKey，如果尚未在ShareSDK官网注册过App，请移步到http://mob.com/login 登录后台进行应用注册，
@@ -123,6 +122,7 @@
 	rootTabBarController.tabBar.barTintColor = [UIColor colorWithRed:239 / 255.0 green:239 / 255.0 blue:239 / 255.0 alpha:1];
 	rootTabBarController.tabBar.backgroundColor = [UIColor clearColor];
 	
+    // 夜间模式
 	if ([AppConfigure boolForKey:APP_THEME_NIGHT_MODE]) {
 		[[DSNavigationBar appearance] setNavigationBarWithColor:NightNavigationBarColor];
 		
@@ -151,7 +151,7 @@
 	[self.window makeKeyAndVisible];
 	
 	if (!(isGreatThanIOS9)) {
-		// 添加一个window, 点击这个window, 可以让屏幕上的scrollView滚到最顶部
+		// 添加一个 window, 点击这个 window, 可以让屏幕上的 scrollView 滚到最顶部
 		[TopWindow show];
 	}
 	

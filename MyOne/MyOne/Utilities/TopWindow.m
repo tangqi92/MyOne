@@ -12,7 +12,7 @@
 
 static UIWindow *window;
 
-//初始化window
+// 初始化 window
 + (void)initialize {
 	window = [[UIWindow alloc] init];
 	window.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 20);
