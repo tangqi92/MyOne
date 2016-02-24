@@ -333,9 +333,9 @@
 			children = (
 				82A726A21B6E264200348EAC /* Vendor */,
 				821392491B6BA5B8004D91EF /* Fonts */,
-				828F6D2A1B68E97F007521F0 /* Modules */,
+				828F6D2A1B68E97F007521F0 /* Models */,
 				82E75E6E1B65F553000C8106 /* Views */,
-				82E75E6D1B65F553000C8106 /* ViewControllers */,
+				82E75E6D1B65F553000C8106 /* Controllers */,
 				82E75E6C1B65F553000C8106 /* Utilities */,
 				8269D2831B65DC5C0041AE0B /* AppDelegate.h */,
 				8269D2841B65DC5C0041AE0B /* AppDelegate.m */,
@@ -388,7 +388,7 @@
 			path = TestDatas;
 			sourceTree = "<group>";
 		};
-		828F6D2A1B68E97F007521F0 /* Modules */ = {
+		828F6D2A1B68E97F007521F0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				828F6D2B1B68E98A007521F0 /* HomeEntity.h */,
@@ -400,6 +400,7 @@
 				828F6D341B68E9CF007521F0 /* ThingEntity.h */,
 				828F6D351B68E9CF007521F0 /* ThingEntity.m */,
 			);
+			name = Models;
 			path = Modules;
 			sourceTree = "<group>";
 		};
@@ -437,7 +438,7 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		82E75E6D1B65F553000C8106 /* ViewControllers */ = {
+		82E75E6D1B65F553000C8106 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				82E75E951B6753B0000C8106 /* BaseViewController */,
@@ -456,6 +457,7 @@
 				82A7269F1B6E0B2600348EAC /* SettingsViewController.h */,
 				82A726A01B6E0B2600348EAC /* SettingsViewController.m */,
 			);
+			name = Controllers;
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};

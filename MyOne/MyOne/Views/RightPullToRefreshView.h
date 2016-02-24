@@ -13,8 +13,8 @@
 
 @interface RightPullToRefreshView : UIView
 
-@property (nonatomic, assign) id <RightPullToRefreshViewDelegate> delegate;
-@property (nonatomic, assign) id <RightPullToRefreshViewDataSource> dataSource;
+@property (nonatomic, assign) id<RightPullToRefreshViewDelegate> delegate;
+@property (nonatomic, assign) id<RightPullToRefreshViewDataSource> dataSource;
 @property (nonatomic, readonly) NSInteger currentItemIndex;
 @property (nonatomic, strong, readonly) UIView *currentItemView;
 @property (nonatomic, strong, readonly) UIView *contentView;

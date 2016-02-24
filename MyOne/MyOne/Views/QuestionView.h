@@ -24,5 +24,4 @@
  */
 - (void)refreshSubviewsForNewItem;
 
-
 @end

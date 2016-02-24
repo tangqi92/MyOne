@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 melody. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <AFNetworking/AFNetworking.h>
+#import <Foundation/Foundation.h>
 
 // 获取首页内容接口地址
 #define URL_GET_HOME_CONTENT @"http://bea.wufazhuce.com/OneForWeb/one/getHp_N"
@@ -23,10 +23,10 @@
 @interface HTTPTool : NSObject
 
 // 请求成功之后回调的 Block
-typedef void(^SuccessBlock) (AFHTTPRequestOperation *operation, id responseObject);
+typedef void (^SuccessBlock)(AFHTTPRequestOperation *operation, id responseObject);
 
 // 请求失败之后回调的 Block
-typedef void(^FailBlock) (AFHTTPRequestOperation *operation, NSError *error);
+typedef void (^FailBlock)(AFHTTPRequestOperation *operation, NSError *error);
 
 /**
  *  获取首页数据
@@ -44,7 +44,7 @@ typedef void(^FailBlock) (AFHTTPRequestOperation *operation, NSError *error);
  *  @param success 请求成功 Block
  *  @param fail    请求失败 Block
  */
-+ (void)requestHomeContentByIndex:(NSInteger)index success:(SuccessBlock)success failBlock:(FailBlock)fail ;
++ (void)requestHomeContentByIndex:(NSInteger)index success:(SuccessBlock)success failBlock:(FailBlock)fail;
 
 /**
  *  获取文章

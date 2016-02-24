@@ -13,7 +13,7 @@
 
 static CGFloat kEndPoint = 1.5;
 
--(void)awakeFromNib {
+- (void)awakeFromNib {
     [super awakeFromNib];
     if (self.color) {
         [self setNavigationBarWithColor:self.color];
@@ -24,14 +24,14 @@ static CGFloat kEndPoint = 1.5;
 
 void drawLinearGradient(CGContextRef context, CGRect rect, CGColorRef startColor, CGColorRef endColor) {
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGFloat locations[] = { 0.0, 1.0 };
-    
-    NSArray *colors = @[(__bridge id) startColor, (__bridge id) endColor];
-    
+    CGFloat locations[] = {0.0, 1.0};
+
+    NSArray *colors = @[ (__bridge id) startColor, (__bridge id) endColor ];
+
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef) colors, locations);
-    CGPoint startPoint = CGPointMake(rect.size.width/2, 0);
-    CGPoint endPoint = CGPointMake(rect.size.width/2, rect.size.height/kEndPoint);
-    
+    CGPoint startPoint = CGPointMake(rect.size.width / 2, 0);
+    CGPoint endPoint = CGPointMake(rect.size.width / 2, rect.size.height / kEndPoint);
+
     CGContextSaveGState(context);
     CGContextAddRect(context, rect);
     CGContextClip(context);
@@ -44,10 +44,10 @@ void drawLinearGradient(CGContextRef context, CGRect rect, CGColorRef startColor
     UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
     [color setFill];
     UIRectFill(rect);
-    
+
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
+
     return image;
 }
 
@@ -55,35 +55,35 @@ void drawLinearGradient(CGContextRef context, CGRect rect, CGColorRef startColor
     CGRect rect = CGRectMake(0, 0, 1, 1);
     UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    UIColor * beginColor = [colours objectAtIndex:0];
-    UIColor * endColor = [colours objectAtIndex:1];
+    UIColor *beginColor = [colours objectAtIndex:0];
+    UIColor *endColor = [colours objectAtIndex:1];
     drawLinearGradient(context, rect, beginColor.CGColor, endColor.CGColor);
     CGContextRestoreGState(context);
-    
+
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
+
     return image;
 }
 
--(void)setNavigationBarWithColor:(UIColor *)color {
+- (void)setNavigationBarWithColor:(UIColor *)color {
     UIImage *image = [self imageWithColor:color];
-    
+
     [self setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
     [self setBarStyle:UIBarStyleDefault];
     [self setShadowImage:[UIImage new]];
-    [self setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    [self setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [self setTintColor:[UIColor whiteColor]];
     [self setTranslucent:NO];
 }
 
--(void)setNavigationBarWithColors:(NSArray *)colours {
+- (void)setNavigationBarWithColors:(NSArray *)colours {
     UIImage *image = [self imageWithGradients:colours];
-    
+
     [self setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
     [self setBarStyle:UIBarStyleDefault];
     [self setShadowImage:[UIImage new]];
-    [self setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    [self setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [self setTintColor:[UIColor whiteColor]];
     [self setTranslucent:NO];
 }

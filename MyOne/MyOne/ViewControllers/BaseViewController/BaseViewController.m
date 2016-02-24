@@ -37,12 +37,11 @@
     self.panelView = [[UIView alloc] initWithFrame:self.view.bounds];
     self.panelView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.panelView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
-    
+
     self.loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.loadingView.frame = CGRectMake((self.view.frame.size.width - self.loadingView.frame.size.width) / 2, (self.view.frame.size.height - self.loadingView.frame.size.height) / 2, self.loadingView.frame.size.width, self.loadingView.frame.size.height);
     self.loadingView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
     [self.panelView addSubview:self.loadingView];
-    
 }
 
 #pragma mark - Lifecycle
@@ -64,7 +63,7 @@
         [shareButton setBackgroundImage:[UIImage imageNamed:@"nav_share_btn_highlighted"] forState:UIControlStateHighlighted];
         [shareButton addTarget:self action:@selector(shareToSocial) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithCustomView:shareButton];
-        
+
         self.navigationItem.rightBarButtonItem = shareItem;
     }
 }
@@ -80,10 +79,10 @@
     UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
     [color setFill];
     UIRectFill(rect);
-    
+
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
+
     return image;
 }
 
@@ -132,37 +131,34 @@
 
 #pragma mark - ShareAction
 
-- (void)shareToSocial
-{
+- (void)shareToSocial {
     /**
      * 在简单分享中，只要设置共有分享参数即可分享到任意的社交平台
      **/
     __weak BaseViewController *theController = self;
-    
+
     //1、创建分享参数（必要）
     NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-    NSArray* imageArray = @[[UIImage imageNamed:@"navLogo.png"]];
+    NSArray *imageArray = @[ [UIImage imageNamed:@"navLogo.png"] ];
     [shareParams SSDKSetupShareParamsByText:@"分享内容"
                                      images:imageArray
                                         url:[NSURL URLWithString:@"http://itangqi.me"]
                                       title:@"分享标题"
                                        type:SSDKContentTypeAuto];
-    
+
     //2、分享
     [ShareSDK showShareActionSheet:nil
                              items:nil
                        shareParams:shareParams
                onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
-                   
+
                    switch (state) {
-                           
-                       case SSDKResponseStateBegin:
-                       {
+
+                       case SSDKResponseStateBegin: {
                            [theController showLoadingView:YES];
                            break;
                        }
-                       case SSDKResponseStateSuccess:
-                       {
+                       case SSDKResponseStateSuccess: {
                            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功"
                                                                                message:nil
                                                                               delegate:nil
@@ -171,10 +167,8 @@
                            [alertView show];
                            break;
                        }
-                       case SSDKResponseStateFail:
-                       {
-                           if (platformType == SSDKPlatformTypeSMS && [error code] == 201)
-                           {
+                       case SSDKResponseStateFail: {
+                           if (platformType == SSDKPlatformTypeSMS && [error code] == 201) {
                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
                                                                                message:@"失败原因可能是：1、短信应用没有设置帐号；2、设备不支持短信应用；3、短信应用在iOS 7以上才能发送带附件的短信。"
                                                                               delegate:nil
@@ -182,9 +176,7 @@
                                                                      otherButtonTitles:nil, nil];
                                [alert show];
                                break;
-                           }
-                           else if(platformType == SSDKPlatformTypeMail && [error code] == 201)
-                           {
+                           } else if (platformType == SSDKPlatformTypeMail && [error code] == 201) {
                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
                                                                                message:@"失败原因可能是：1、邮件应用没有设置帐号；2、设备不支持邮件应用；"
                                                                               delegate:nil
@@ -192,11 +184,9 @@
                                                                      otherButtonTitles:nil, nil];
                                [alert show];
                                break;
-                           }
-                           else
-                           {
+                           } else {
                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
-                                                                               message:[NSString stringWithFormat:@"%@",error]
+                                                                               message:[NSString stringWithFormat:@"%@", error]
                                                                               delegate:nil
                                                                      cancelButtonTitle:@"OK"
                                                                      otherButtonTitles:nil, nil];
@@ -205,8 +195,7 @@
                            }
                            break;
                        }
-                       case SSDKResponseStateCancel:
-                       {
+                       case SSDKResponseStateCancel: {
                            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享已取消"
                                                                                message:nil
                                                                               delegate:nil
@@ -218,13 +207,11 @@
                        default:
                            break;
                    }
-                   
-                   if (state != SSDKResponseStateBegin)
-                   {
+
+                   if (state != SSDKResponseStateBegin) {
                        [theController showLoadingView:NO];
-                       
                    }
-                   
+
                }];
 }
 

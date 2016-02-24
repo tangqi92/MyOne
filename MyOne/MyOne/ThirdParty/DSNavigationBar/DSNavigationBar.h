@@ -17,7 +17,7 @@ IB_DESIGNABLE
 
 @property (strong, nonatomic) IBInspectable UIColor *color;
 
--(void)setNavigationBarWithColor:(UIColor *)color;
--(void)setNavigationBarWithColors:(NSArray *)colours;
+- (void)setNavigationBarWithColor:(UIColor *)color;
+- (void)setNavigationBarWithColors:(NSArray *)colours;
 
 @end
