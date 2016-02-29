@@ -35,10 +35,43 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+
+    [self initViewControllers];
+    [self registerNotification];
+    [self registerShareSDK];
+
+    if (!(isGreatThanIOS9)) {
+        // 添加一个 window, 点击这个 window, 可以让屏幕上的 scrollView 滚到最顶部
+        [TopWindow show];
+    }
+
+    return YES;
+}
+
+- (UINavigationController *)dsNavigationController {
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithNavigationBarClass:[DSNavigationBar class] toolbarClass:nil];
+    [navigationController.navigationBar setOpaque:YES];
+    navigationController.navigationBar.tintColor = [UIColor colorWithRed:100 / 255.0 green:100 / 255.0 blue:100 / 255.0 alpha:229 / 255.0];
+
+    return navigationController;
+}
+
+- (UIImage *)imageWithColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0, 0, 1, 1);
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
+    [color setFill];
+    UIRectFill(rect);
+
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    return image;
+}
+
+- (void)initViewControllers {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-
+    
     UITabBarController *rootTabBarController = [[UITabBarController alloc] init];
-
     // 首页
     HomeViewController *homeViewController = [[HomeViewController alloc] init];
     UINavigationController *homeNavigationController = [self dsNavigationController];
@@ -72,7 +105,7 @@
         rootTabBarController.tabBar.backgroundImage = [self imageWithColor:[UIColor colorWithRed:48 / 255.0 green:48 / 255.0 blue:48 / 255.0 alpha:1]];
 
         // 设置状态栏的字体颜色为黑色
-        [application setStatusBarStyle:UIStatusBarStyleDefault];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 
         [DKNightVersionManager nightFalling];
         self.window.backgroundColor = NightBGViewColor;
@@ -83,47 +116,19 @@
         rootTabBarController.tabBar.backgroundImage = [self imageWithColor:[UIColor colorWithRed:241 / 255.0 green:241 / 255.0 blue:241 / 255.0 alpha:1]];
 
         // 设置状态栏的字体颜色为黑色
-        [application setStatusBarStyle:UIStatusBarStyleDefault];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
         self.window.backgroundColor = [UIColor whiteColor];
     }
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nightModeSwitch:) name:@"DKNightVersionNightFallingNotification" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nightModeSwitch:) name:@"DKNightVersionDawnComingNotification" object:nil];
-
     self.window.rootViewController = rootTabBarController;
     [self.window makeKeyAndVisible];
-
-    if (!(isGreatThanIOS9)) {
-        // 添加一个 window, 点击这个 window, 可以让屏幕上的 scrollView 滚到最顶部
-        [TopWindow show];
-    }
-
-    [self shareSDKResign];
-
-    return YES;
 }
 
-- (UINavigationController *)dsNavigationController {
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithNavigationBarClass:[DSNavigationBar class] toolbarClass:nil];
-    [navigationController.navigationBar setOpaque:YES];
-    navigationController.navigationBar.tintColor = [UIColor colorWithRed:100 / 255.0 green:100 / 255.0 blue:100 / 255.0 alpha:229 / 255.0];
-
-    return navigationController;
+- (void)registerNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nightModeSwitch:) name:@"DKNightVersionNightFallingNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nightModeSwitch:) name:@"DKNightVersionDawnComingNotification" object:nil];
 }
 
-- (UIImage *)imageWithColor:(UIColor *)color {
-    CGRect rect = CGRectMake(0, 0, 1, 1);
-    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
-    [color setFill];
-    UIRectFill(rect);
-
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-
-    return image;
-}
-
-- (void)shareSDKResign {
+- (void)registerShareSDK {
     /**
      *  设置ShareSDK的appKey，如果尚未在ShareSDK官网注册过App，请移步到http://mob.com/login 登录后台进行应用注册，
      *  在将生成的AppKey传入到此方法中。
