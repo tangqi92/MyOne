@@ -1,4 +1,4 @@
-# MyOne
+# MyOne - 已不再维护
 
 项目来源：https://github.com/meilbn/MyOne-iOS
 
